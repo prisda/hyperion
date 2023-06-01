@@ -1,0 +1,21 @@
+<div class="story-slide">
+  <img class="story-slide__image" src="{{#if image}}{{image}}{{/if}}" alt="{{#if title}}{{title}}{{/if}}">
+  <div class="story-card">
+    <div class="story-card__caption">
+      {{#if caption}}{{caption}}{{/if}}
+    </div>
+    <h4 class="story-card__title">
+      {{#if title}}{{title}}{{/if}}
+    </h4>
+    <p data-description="{{#if description}}{{breaklines description}}{{/if}}" class="story-card__description">
+      {{#if description}}{{breaklines description}}{{/if}}
+    </p>
+  </div>
+  <div class="story-slide-locked">
+    <div class="story-slide-locked__icon"></div>
+    <div>
+      <div class="story-slide-locked__remaining"></div>
+      <div class="story-slide-locked__date"></div>
+    </div>
+  </div>
+</div>

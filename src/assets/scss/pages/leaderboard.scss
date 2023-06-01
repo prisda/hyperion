@@ -1,0 +1,332 @@
+// Initialize first
+@import "../init";
+
+.hero {
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding: calc(32px + $hpl-top-skewed-height) toRem(32) toRem(72);
+
+  @include media-breakpoint-down(lg) {
+    padding: calc(32px + $hpl-top-skewed-height-mobile) toRem(32) toRem(72);
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: calc(32px + $hpl-top-skewed-height-mobile) toRem(24) toRem(136);
+  }
+
+  // Main border line
+  &::after {
+    @extend %pseudo-hero-border-line;
+    bottom: 72px;
+    background-color: #A2A4A9;
+
+    @include media-breakpoint-down(sm) {
+      width: calc(100% - 48px);
+      bottom: 136px;
+    }
+  }
+
+  // BG
+  &::before {
+    @extend %pseudo-hero-border-line;
+    bottom: 72px;
+    z-index: -1;
+    background-color: #1E2430;
+    background-image: url("data:image/svg+xml,%3Csvg width='870' height='204' viewBox='0 0 870 204' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M752.623 0H615.609L732.609 117L615.609 234H752.623L869.623 117L752.623 0Z' fill='white' fill-opacity='0.1'/%3E%3Cpath d='M561.474 0H424.461L541.461 117L424.461 234H561.474L678.474 117L561.474 0Z' fill='white' fill-opacity='0.1'/%3E%3Cpath d='M370.31 0H233.297L350.297 117L233.297 234H370.31L487.31 117L370.31 0Z' fill='white' fill-opacity='0.1'/%3E%3Cpath d='M179.162 0H42.1484L159.149 117L42.1484 234H179.162L296.162 117L179.162 0Z' fill='white' fill-opacity='0.1'/%3E%3Cpath d='M-11.9867 0H-149L-31.9999 117L-149 234H-11.9867L105.013 117L-11.9867 0Z' fill='white' fill-opacity='0.1'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: auto 204px;
+    background-position: bottom left;
+    clip-path: polygon(0 0,
+        calc(0% + $hpl-top-side-distance) 0,
+        calc($hpl-top-side-distance + $hpl-top-skewed-width) $hpl-top-skewed-height,
+        calc(100% - 208px - 24px) $hpl-top-skewed-height,
+        calc(100% - (208px - 20px) - 24px) calc($hpl-top-skewed-height + 40px),
+        calc(100% - (208px - 20px - 168px) - 24px) calc($hpl-top-skewed-height + 40px),
+        calc(100% - 24px) $hpl-top-skewed-height,
+        100% $hpl-top-skewed-height,
+        100% calc(100% - $hpl-bottom-skewed-height),
+        calc(100% - $hpl-bottom-skewed-width) 100%,
+        calc(0% + $hpl-bottom-skewed-width) 100%,
+        0% calc(100% - $hpl-bottom-skewed-height));
+
+    @include media-breakpoint-down(lg) {
+      clip-path: polygon(0 0,
+          calc(0% + $hpl-top-side-distance-mobile) 0,
+          calc($hpl-top-side-distance-mobile + $hpl-top-skewed-width) $hpl-top-skewed-height-mobile,
+          100% $hpl-top-skewed-height-mobile,
+          100% calc(100% - $hpl-bottom-skewed-height),
+          calc(100% - $hpl-bottom-skewed-width) 100%,
+          calc(0% + $hpl-bottom-skewed-width) 100%,
+          0% calc(100% - $hpl-bottom-skewed-height));
+    }
+
+    @include media-breakpoint-down(sm) {
+      width: calc(100% - 48px);
+      bottom: 136px;
+    }
+  }
+
+  .hero-content {
+    padding: toRem(48) 0 toRem(98);
+    @include flex(column, center);
+
+    @include media-breakpoint-down(sm) {
+      padding: toRem(56) 0 toRem(114);
+    }
+  }
+
+  .hero-heading {
+    position: relative;
+    z-index: 1;
+    font-size: toRem(144);
+    line-height: 1.2;
+    text-align: center;
+    color: $white;
+
+    @include media-breakpoint-down(xl) {
+      font-size: toRem(104);
+    }
+
+    @include media-breakpoint-down(lg) {
+      font-size: toRem(80);
+    }
+
+    @include media-breakpoint-down(md) {
+      font-size: toRem(56);
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: toRem(52);
+      word-break: break-all;
+    }
+
+    span {
+      word-break: normal !important;
+    }
+  }
+
+  .search-form {
+    position: absolute;
+    z-index: 4;
+    bottom: toRem(72);
+    left: 50%;
+    width: 54%;
+    transform: translate(-50%, 50%);
+
+    @include media-breakpoint-down(sm) {
+      width: calc(100% - 48px);
+      bottom: toRem(62);
+      transform: translate(-50%, 0%);
+    }
+
+    input {
+      width: 100%;
+      height: 58px;
+      background-color: #161A23;
+      color: $white;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      padding: toRem(16) toRem(24) toRem(16) toRem(64);
+      clip-path: polygon(0% 20px,
+          20px 0%,
+          100% 0%,
+          100% 100%,
+          0% 100%,
+          0% 20px);
+
+      &::placeholder {
+        color: rgba($white, 0.5);
+      }
+    }
+
+    &__border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #A2A4A9;
+      clip-path: polygon(0% 20px,
+          20px 0%,
+          100% 0%,
+          100% 100%,
+          0% 100%,
+          0% 20px,
+          1px 20px,
+          1px calc(100% - 1px),
+          calc(100% - 1px) calc(100% - 1px),
+          calc(100% - 1px) 1px,
+          20px 1px,
+          1px 20px);
+    }
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      left: 24px;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  .hero-ornament {
+    overflow: hidden;
+    position: absolute;
+    z-index: 3;
+    bottom: 84px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 64px);
+    // max-width: 1376px;
+    height: $hpl-bottom-skewed-height;
+    margin: 0 auto;
+
+    @include media-breakpoint-down(sm) {
+      bottom: 136px;
+    }
+
+    &__line {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100px;
+      height: 100%;
+      transform: translate(-12px, -20px);
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: $white;
+        clip-path: polygon(0% 100%,
+            calc(100% - $hpl-bottom-skewed-width) 100%,
+            100% 0%,
+            calc(100% - 1px) 0%,
+            calc(100% - $hpl-bottom-skewed-width) calc(100% - 1px),
+            0% calc(100% - 1px))
+      }
+    }
+
+    &__dots {
+      position: absolute;
+      right: calc(8px + 100px + 12px);
+      bottom: 18px;
+    }
+  }
+}
+
+.leaderboard {
+  padding: toRem(40) 0 toRem(80);
+
+  @include media-breakpoint-down(sm) {
+    padding: toRem(4) 0 toRem(56);
+  }
+
+  .leaderboard-content {
+    position: relative;
+    z-index: 1;
+    @include flex(row);
+    gap: toRem(72);
+    padding: 0 toRem(24);
+
+    @include media-breakpoint-down(xl) {
+      gap: toRem(32);
+      padding: 0;
+    }
+
+    .leaderboard-list {
+      position: relative;
+      flex: 0 0 auto;
+      width: 50%;
+
+      @include media-breakpoint-down(xl) {
+        width: 55%;
+      }
+
+      @include media-breakpoint-down(lg) {
+        width: 100%;
+      }
+
+      &__inner-wrap {
+        position: static;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        @include flex(column, stretch);
+        gap: toRem(24);
+        overflow-y: auto;
+        @extend .invisible-scrollbar;
+
+        @include media-breakpoint-down(lg) {
+          position: static;
+        }
+      }
+
+      &__cta {
+        @include flex(column, center);
+        margin-top: toRem(24);
+
+        .btn {
+          @include flex(row, center, center);
+          gap: toRem(6);
+          padding: toRem(9.5) toRem(60);
+          border-radius: 0;
+          text-transform: uppercase;
+          clip-path: polygon(22px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%);
+
+          .btn-icon {
+            width: auto;
+            height: 24px;
+          }
+        }
+      }
+    }
+
+    .leaderboard-details {
+      flex: 1;
+
+      @include media-breakpoint-down(lg) {
+        visibility: hidden;
+        overflow: hidden;
+        position: fixed;
+        z-index: $zindex-modal;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        transition: left .3s ease-out;
+      }
+
+      &.show {
+        @include media-breakpoint-down(lg) {
+          visibility: visible;
+          left: 0%;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        overflow: visible;
+        overflow-y: auto;
+      }
+
+      &>* {
+        width: 100%;
+        height: 100%;
+
+        @include media-breakpoint-down(sm) {
+          height: auto;
+          min-height: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+/* Basement Grotesque Roman */
+@include font-face("Basement Grotesque Roman", "BasementGrotesque/BasementGrotesque-Black");
+
+/* Yeager */
+@include font-face("Yeager", "Yeager/Yeager-Regular");
+
+/* IBM Plex Mono */
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-Bold", 700);
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-BoldItalic", 700, italic);
+
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-SemiBold", 600);
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-SemiBoldItalic", 600, italic);
+
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-Medium", 500);
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-MediumItalic", 500, italic);
+
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-Regular");
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-Italic", 400, italic);
+
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-Light", 300);
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-LightItalic", 300, italic);
+
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-ExtraLight", 200);
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-ExtraLightItalic", 200, italic);
+
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-Thin", 100);
+@include font-face("IBM Plex Mono", "IBMPlexMono/IBMPlexMono-ThinItalic", 100, italic);

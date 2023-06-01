@@ -1,0 +1,17 @@
+// Initialize first
+@import "../init";
+
+.nft-mint-page {
+  background-color: $gray-dark;
+  min-height: 100vh;
+  @include flex(column, stretch, center);
+
+  &__inner-wrap {
+    padding: toRem(48) 0;
+    @include flex(column, stretch, center);
+
+    @include media-breakpoint-up(sm) {
+      padding: $modal-dialog-margin-y-sm-up 0;
+    }
+  }
+}

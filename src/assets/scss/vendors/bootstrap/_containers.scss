@@ -1,0 +1,15 @@
+.container {
+  @include media-breakpoint-down(sm) {
+    padding-right: toRem(24);
+    padding-left: toRem(24);
+  }
+
+  &--navbar {
+    // max-width: calc(1376px + 64px);
+    max-width: unset;
+  }
+
+  &--hero {
+    max-width: 1376px;
+  }
+}

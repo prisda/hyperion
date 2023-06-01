@@ -1,0 +1,245 @@
+.navbar {
+  position: absolute;
+  z-index: $zindex-fixed;
+  top: 32px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: $hpl-top-skewed-height;
+  padding: 0;
+
+  @include media-breakpoint-down(lg) {
+    height: $hpl-top-skewed-height-mobile;
+  }
+
+  .navbar-content {
+    width: 100%;
+    @include flex(row, center, center);
+
+    @include media-breakpoint-down(lg) {
+      @include flex(row, center, space-between);
+      overflow: hidden;
+    }
+  }
+
+  .navbar-side {
+    overflow: hidden;
+    flex: 0 0 auto;
+    width: calc($hpl-top-side-distance + 32px);
+
+    @include media-breakpoint-down(lg) {
+      width: calc($hpl-top-side-distance-mobile + 32px);
+    }
+
+    &--brand {
+      height: $hpl-top-skewed-height;
+      @include flex(row, center);
+      padding-inline: toRem(20);
+
+      @include media-breakpoint-down(lg) {
+        height: $hpl-top-skewed-height-mobile;
+      }
+    }
+
+    &--cta {
+      overflow: visible;
+      height: $hpl-top-skewed-height;
+      padding: 0 toRem(32) 0 0;
+      width: calc(192px + 32px);
+
+      @include media-breakpoint-down(lg) {
+        display: none;
+      }
+
+      .btn-wrapper {
+        @include flex(row, center, center);
+        width: 100%;
+        height: 100%;
+        transform: translateY(50%);
+      }
+
+      .btn {
+        @include flex(row, center, center);
+        width: 100%;
+        height: 64px;
+        padding: toRem(20) toRem(24);
+        border-radius: 0;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        text-align: center;
+        text-transform: uppercase;
+        background-color: rgba($white, 0.3);
+        backdrop-filter: blur(8px);
+        color: $white;
+        clip-path: polygon(0 50%,
+            16px 0%,
+            calc(100% - 16px) 0%,
+            100% 50%,
+            calc(100% - 16px) 100%,
+            16px 100%);
+
+        &:hover {
+          background-color: shade-color(rgba($white, 0.3), $btn-hover-bg-shade-amount);
+        }
+
+        &:active {
+          background-color: shade-color(rgba($white, 0.3), $btn-active-bg-shade-amount);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          z-index: -1;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background-color: rgba($white, 0.4);
+          clip-path: polygon(0 50%,
+              16px 0%,
+              calc(100% - 16px) 0%,
+              100% 50%,
+              calc(100% - 16px) 100%,
+              16px 100%,
+              0 50%,
+              1px 50%,
+              calc(16px + 1px) calc(100% - 1px),
+              calc(100% - (16px + 1px)) calc(100% - 1px),
+              calc(100% - 1px) 50%,
+              calc(100% - (16px + 1px)) 1px,
+              calc(16px + 1px) 1px,
+              1px 50%);
+        }
+
+        .btn-icon {
+          width: auto;
+          height: 24px;
+        }
+      }
+    }
+
+    &--menu {
+      overflow: hidden;
+      width: auto;
+      height: $hpl-top-skewed-height-mobile;
+      @include flex(row, center);
+      padding-right: toRem(20);
+
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+
+      .btn {
+        appearance: none;
+        padding: 0;
+        @include flex(row, center, center);
+        gap: toRem(12);
+        font-size: $font-size-base;
+        font-weight: $font-weight-base;
+        line-height: $line-height-base;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: $white;
+        border: none;
+        outline: none;
+        box-shadow: none;
+
+        &>span {
+          @include media-breakpoint-down(sm) {
+            display: none;
+          }
+        }
+
+        .btn-icon {
+          width: 24px;
+          height: 24px;
+
+          @include media-breakpoint-down(sm) {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+
+  .navbar-brand {
+    width: 100%;
+    max-width: 214px;
+    padding: 0;
+    margin: 0;
+
+    @include media-breakpoint-down(lg) {
+      max-width: 160px;
+    }
+  }
+
+  .navbar-menu {
+    overflow: auto;
+    flex: 1;
+    @include flex(row, center);
+    gap: toRem(40);
+    padding: toRem(16) toRem(40);
+    margin: 0 auto;
+    overflow-x: auto;
+    @extend .invisible-scrollbar;
+
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
+
+    &__link {
+      @include flex(row, center);
+      white-space: nowrap;
+      text-transform: uppercase;
+      color: $white;
+
+      &:hover {
+        color: $primary;
+      }
+
+      &.active {
+        color: $primary;
+      }
+
+      &--locked {
+        cursor: default;
+
+        &::before {
+          content: '';
+          flex: none;
+          width: toRem(12);
+          height: toRem(16);
+          background-image: url("data:image/svg+xml,%3Csvg width='11' height='17' viewBox='0 0 11 17' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.7315 6.85415L10.3964 6.51903C10.2246 6.34723 9.99204 6.2512 9.74969 6.2512H9.39759V3.0307C9.39759 1.61055 8.242 0.454956 6.82184 0.454956H4.1775C2.75735 0.454956 1.60176 1.61055 1.60176 3.0307V6.2512H1.24966C1.0073 6.2512 0.774749 6.34723 0.602945 6.51903L0.267831 6.85415C0.0960275 7.02595 0 7.2585 0 7.50086V12.216C0 12.4583 0.0960275 12.6909 0.267831 12.8627L3.68234 16.2772C3.85415 16.449 4.0867 16.545 4.32906 16.545H6.67094C6.9133 16.545 7.14585 16.449 7.31765 16.2772L10.7322 12.8627C10.904 12.6909 11 12.4583 11 12.216V7.50086C10.9993 7.2585 10.9033 7.02595 10.7315 6.85415ZM5.95694 10.8481V12.6341C5.95694 12.8869 5.75248 13.0913 5.49967 13.0913C5.24687 13.0913 5.0424 12.8869 5.0424 12.6341V10.8481C4.5381 10.6619 4.17816 10.1785 4.17816 9.60888C4.17816 8.87855 4.77 8.28737 5.49967 8.28737C6.22935 8.28737 6.82119 8.87921 6.82119 9.60888C6.82119 10.1785 6.46125 10.6619 5.95694 10.8481ZM2.5163 6.2512V3.0307C2.5163 2.11485 3.26165 1.3695 4.1775 1.3695H6.82184C7.73769 1.3695 8.48305 2.11485 8.48305 3.0307V6.2512H2.5163Z' fill='white'/%3E%3C/svg%3E%0A");
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          margin-right: toRem(4);
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .navbar-socials {
+    margin-left: auto;
+    @include flex(row, center);
+    gap: toRem(24);
+    color: $white;
+    white-space: nowrap;
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: $primary;
+      }
+    }
+  }
+}

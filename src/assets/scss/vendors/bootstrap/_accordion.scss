@@ -1,0 +1,61 @@
+.accordion {
+  @include flex(column, stretch);
+  gap: toRem(20);
+
+  .accordion-item {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0% 100%);
+    background-color: $gray-dark;
+  }
+
+  .accordion-button {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: $gray-dark;
+    padding: toRem(22) toRem(24);
+    font-weight: $font-weight-base;
+    font-size: $font-size-xl;
+    line-height: $line-height-lg;
+    letter-spacing: 0.05em;
+    color: $white;
+
+    @include media-breakpoint-down(sm) {
+      font-size: $font-size-base;
+      line-height: $line-height-base;
+      letter-spacing: 0.04em;
+    }
+
+    &::after {
+      @include media-breakpoint-down(sm) {
+        width: 24px;
+        height: 24px;
+        background-size: contain;
+      }
+    }
+  }
+
+  .accordion-collapse {
+    border-radius: 0;
+  }
+
+  .accordion-body {
+    border-radius: 0;
+    font-weight: $font-weight-base;
+    font-size: $font-size-xl;
+    line-height: $line-height-lg;
+    letter-spacing: 0.05em;
+    color: rgba($white, 0.4);
+    padding-top: 0;
+
+    @include media-breakpoint-down(sm) {
+      font-size: $font-size-base;
+      line-height: $line-height-base;
+      letter-spacing: 0.04em;
+    }
+  }
+}

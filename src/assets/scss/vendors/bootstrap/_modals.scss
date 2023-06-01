@@ -1,0 +1,17 @@
+.modal {
+  .modal-content {
+    position: relative;
+    clip-path: polygon(40px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 40px);
+
+    @include media-breakpoint-down(sm) {
+      clip-path: polygon(24px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 24px);
+    }
+  }
+
+  .modal-header {
+    .btn-close {
+      padding: toRem(4);
+      margin: 0;
+    }
+  }
+}

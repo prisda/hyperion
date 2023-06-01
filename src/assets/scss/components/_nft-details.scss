@@ -1,0 +1,181 @@
+.nft-details {
+  @include flex(column, center);
+  text-align: center;
+
+  &__header {
+    text-transform: uppercase;
+    color: $white;
+    margin-bottom: toRem(48);
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: toRem(40)
+    }
+  }
+
+  &__title {
+    @extend %heading;
+    font-size: toRem(18);
+    line-height: toRem(22);
+    letter-spacing: 0.05em;
+    color: $white;
+    margin-bottom: toRem(14);
+
+    @include media-breakpoint-down(sm) {
+      font-size: toRem(16);
+      line-height: toRem(19);
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 352px;
+    aspect-ratio: 1/1;
+    padding: 1px;
+    background-color: $gray-dark;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(155, 155, 155, 0.6);
+      clip-path: polygon(0% 20px,
+          20px 0%,
+          100% 0%,
+          100% 100%,
+          0% 100%,
+          0% 20px,
+          1px 20px,
+          1px calc(100% - 1px),
+          calc(100% - 1px) calc(100% - 1px),
+          calc(100% - 1px) 1px,
+          20px 1px,
+          1px 20px);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 10px;
+      width: calc(100% - (10px + 4px));
+      height: calc(100% - (4px + 4px));
+      background-image: url("data:image/svg+xml,%3Csvg width='338' height='25' viewBox='0 0 338 25' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M69.0986 7.00002L17.2886 7.00002L0.0585937 24.23L0.708557 24.89L17.6686 7.92001L69.0986 7.92001V7.00002Z' fill='white'/%3E%3Cpath d='M86.6192 7.42966C86.6192 9.10966 87.9792 10.4697 89.6592 10.4697C91.3392 10.4697 92.6992 9.10966 92.6992 7.42966C92.6992 5.74966 91.3392 4.38965 89.6592 4.38965C87.9792 4.38965 86.6192 5.74966 86.6192 7.42966Z' fill='white'/%3E%3Cpath d='M75.0001 7.42966C75.0001 9.10966 76.36 10.4697 78.04 10.4697C79.72 10.4697 81.0801 9.10966 81.0801 7.42966C81.0801 5.74966 79.72 4.38965 78.04 4.38965C76.36 4.38965 75.0001 5.74966 75.0001 7.42966Z' fill='white'/%3E%3Crect x='329' width='9' height='9' fill='%23D9D9D9' fill-opacity='0.4'/%3E%3Crect x='320' y='9' width='5' height='5' fill='%23D9D9D9' fill-opacity='0.4'/%3E%3C/svg%3E%0A");
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      background-position: top center;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: center top;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(0% 20px,
+          20px 0%,
+          100% 0%,
+          100% 100%,
+          0% 100%,
+          0% 20px);
+    }
+  }
+
+  &__cta {
+    margin-top: toRem(48);
+
+    .btn {
+      @include flex(row, center, center);
+      gap: toRem(6);
+      padding: toRem(14) toRem(16);
+      width: 185px;
+      border-radius: 0;
+      text-transform: uppercase;
+      clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%);
+    }
+  }
+
+  .nft-details-value {
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 50%;
+    width: 185px;
+    transform: translate(-50%, 50%);
+    @include flex(row, stretch);
+    padding: toRem(4);
+    gap: toRem(4);
+    background-color: $white;
+    clip-path: polygon(0% 9px, 9px 0%, 100% 0%, 100% 100%, 0% 100%);
+
+    &>span {
+      align-self: center;
+      flex: 1;
+      color: $black;
+      @include flex(row, center, center);
+      font-weight: 700;
+      font-size: toRem(24);
+      line-height: toRem(31);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    &__decrease,
+    &__increase {
+      width: 59px;
+      height: 48px;
+      padding: 0;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      @include flex(row, center, center);
+      border-radius: 0;
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &__decrease {
+      background-color: rgba($subtle, 0.3);
+      color: $black;
+      clip-path: polygon(0% 9px, 9px 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    &__increase {
+      background-color: $black;
+      color: $white;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 9px 100%, 0% calc(100% - 9px));
+    }
+  }
+
+  .mint-status {
+    padding: toRem(72) 0 toRem(64);
+    @include flex(column, center);
+    text-align: center;
+
+    &__icon {
+      width: auto;
+      height: 132px;
+    }
+
+    &__title {
+      @extend %heading;
+      font-size: toRem(18);
+      line-height: 1.21;
+      letter-spacing: 0;
+      color: $white;
+      margin-top: toRem(32);
+    }
+
+    &__description {
+      color: rgba($white, 0.8);
+      margin-top: toRem(12);
+    }
+  }
+}

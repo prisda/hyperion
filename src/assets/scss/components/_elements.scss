@@ -1,0 +1,191 @@
+.section-subtitle {
+  @extend .fs-xl;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $white;
+}
+
+.section-title {
+  color: $white;
+}
+
+.section-divider {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  overflow: hidden;
+  transform: scaleX(-1);
+
+  @include media-breakpoint-down(lg) {
+    height: 32px;
+  }
+
+  &>*:nth-child(1) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      height: 40px;
+      clip-path: polygon(0% 100%, 100% 100%, 100% calc(100% - 1px), 0% calc(100% - 1px));
+      background-color: #3D3E42;
+
+      @include media-breakpoint-down(sm) {
+        width: 25%;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      height: 40px;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 1px, 0% 1px);
+      background-color: #3D3E42;
+
+      @include media-breakpoint-down(lg) {
+        height: 32px;
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: 75%;
+      }
+    }
+  }
+
+  &>*:nth-child(2) {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+
+    @include media-breakpoint-down(sm) {
+      right: unset;
+      left: 0;
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      width: 50%;
+      height: 40px;
+      left: 0;
+      bottom: 0;
+
+      @include media-breakpoint-down(lg) {
+        height: 32px;
+      }
+    }
+
+    &::before {
+      background-color: $body-bg;
+      height: calc(40px + 1px);
+
+      @include media-breakpoint-down(lg) {
+        height: calc(32px + 1px);
+      }
+
+      @include media-breakpoint-down(sm) {
+        width: 70%;
+      }
+    }
+
+    &::after {
+      width: calc(50% + 1px);
+      background-color: #3D3E42;
+      clip-path: polygon(0% 100%, calc(100% - 24px) 100%, 100% 0%, calc(100% - 1px) 0%, calc(100% - 24px) calc(100% - 1px), 0% calc(100% - 1px));
+
+      @include media-breakpoint-down(sm) {
+        width: calc(70% + 1px);
+      }
+    }
+  }
+
+  &>*:nth-child(3) {
+    position: absolute;
+    z-index: 3;
+    width: 88px;
+    height: 40px;
+    left: calc(75% - 8px);
+    transform: translateX(-100%);
+    bottom: 0;
+    clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 8px), 0% calc(100% - 8px));
+
+    @include media-breakpoint-down(lg) {
+      height: 32px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      left: calc(35% - 8px);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: $white;
+      clip-path: polygon(0% 100%,
+          24px 0%,
+          calc(24px + 16px) 0%,
+          calc(16px) 100%,
+          calc(16px + 8px) 100%,
+          calc(40px + 8px) 0%,
+          calc(40px + 8px + 16px) 0%,
+          calc(16px + 8px + 16px) 100%,
+          calc(40px + 8px) 100%,
+          calc(64px + 8px) 0%,
+          calc(64px + 8px + 16px) 0%,
+          calc(40px + 8px + 16px) 100%,
+        );
+    }
+  }
+}
+
+.section-cta {
+  @include flex(row, center, center);
+  margin-top: toRem(36);
+}
+
+.dots-ornament {
+  @include flex(row, center, center);
+  gap: 5px;
+
+  >* {
+    width: 5px;
+    height: 5px;
+    background-color: $white;
+  }
+}
+
+.follow-cursor {
+  opacity: 0;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  background-image: url("data:image/svg+xml,%3Csvg width='65' height='65' viewBox='0 0 65 65' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M32.6904 0.5L55.3178 9.87258L64.6904 32.5L55.3178 55.1274L32.6904 64.5L10.063 55.1274L0.69043 32.5L10.063 9.87258L32.6904 0.5Z' fill='%23D9D9D9' fill-opacity='0.1'/%3E%3Cpath d='M10.2544 10.0639L32.6904 0.770598L55.1265 10.0639L64.4198 32.5L55.1265 54.9361L32.6904 64.2294L10.2544 54.9361L0.961028 32.5L10.2544 10.0639Z' stroke='white' stroke-opacity='0.8' stroke-width='0.5'/%3E%3Cpath d='M22.6904 32.8666L28.5238 27.0333L29.6988 28.2083L25.0488 32.8666L29.6988 37.525L28.5238 38.7L22.6904 32.8666Z' fill='white'/%3E%3Cpath d='M42.69 32.8666L36.8566 38.7L35.6816 37.525L40.3316 32.8666L35.6816 28.2083L36.8566 27.0333L42.69 32.8666Z' fill='white'/%3E%3C/svg%3E%0A");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: $zindex-fixed;
+  user-select: none;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}

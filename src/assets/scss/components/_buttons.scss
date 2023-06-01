@@ -1,0 +1,19 @@
+.btn-default {
+  @extend .btn-primary;
+  @include flex(row, center, center);
+  padding: toRem(20) toRem(96);
+  gap: toRem(8);
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(0% 50%, 16px 0%, calc(100% - 16px) 0%, 100% 50%, calc(100% - 16px) 100%, 16px 100%);
+
+  @include media-breakpoint-down(xs-1) {
+    width: 100%;
+    padding: toRem(20) toRem(48);
+  }
+}
+
+.btn-icon {
+  width: 24px;
+  height: 24px;
+}
