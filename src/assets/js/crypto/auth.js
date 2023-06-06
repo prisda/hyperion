@@ -1,13 +1,5 @@
 import { CHAIN_ID, networks } from "./config.js";
-import { mintWhitelist, mintPublic } from "./mint.js";
-import {
-  initHTML,
-  setWalletText,
-  btn1,
-  btn2,
-  mintBtn1,
-  mintBtn2,
-} from "./html.js";
+import { setWalletText } from "./html.js";
 
 var loggedIn = false;
 
@@ -103,6 +95,3 @@ if (
 ) {
   logIn().then();
 }
-
-/// Login/logout/mint buttons
-initHTML();

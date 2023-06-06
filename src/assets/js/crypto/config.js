@@ -26,6 +26,5 @@ export const networks = {
   },
 };
 /// NFT CONFIG
-// export const NFT_CONTRACT = "0x2ef6BD080A98A9D3230A99A2923f47A3cC2f5359";
-export const NFT_CONTRACT = "0x4a30D3149488eB71da9d74B9aF647Bc6724d5100";
+export const NFT_CONTRACT = "0x0D31a408Db010CF096578B9cE5562B878B344517";
 export const ABI = require("./abi.json");

@@ -1,5 +1,5 @@
 import { logUser } from "./auth";
-import { mintPublic, mintWhitelist } from "./mint";
+import { minter } from "./mint";
 
 /// Login buttons
 export const btn1 = document.getElementById("connect-btn"),
@@ -15,8 +15,8 @@ export const initHTML = () => {
   if (btn1) btn1.addEventListener("click", () => logUser());
   if (btn2) btn2.addEventListener("click", () => logUser());
   /// Mint buttons
-  if (mintBtn1) mintBtn1.addEventListener("click", () => mintPublic());
-  if (mintBtn2) mintBtn2.addEventListener("click", () => mintPublic());
+  if (mintBtn1) mintBtn1.addEventListener("click", () => minter(false));
+  if (mintBtn2) mintBtn2.addEventListener("click", () => minter(true));
 };
 
 /// Change text of login & mint buttons
