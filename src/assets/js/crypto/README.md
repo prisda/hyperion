@@ -13,5 +13,3 @@ This directory contains code to connect the client's site to the zkSync network 
   - `config.js`: Specifies chainId, network details and contract address/abi,
   - `html.js`: Handles connecting logic to html elements
   - `whitelist.js`: Handles whitelist logic
-
-  force commit
