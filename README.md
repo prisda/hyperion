@@ -2,21 +2,7 @@
 
 Join the epic journey to save humanity
 
-## Getting Started
-
-To begin, change your app name in `package.json`
-
-```
-{
-  "name": "your-app-name",
-  ...
-}
-```
-
 ## Installation
-
-We recommend you to use [Node.js](https://nodejs.org/) v16+ and latest NPM version to run.
-Install the dependencies and devDependencies.
 
 ```sh
 npm install
@@ -30,12 +16,6 @@ Open your favorite terminal and run these commands.
 
 ```sh
 npm start
-```
-
-or just watch files with external dev server or live server
-
-```sh
-npm run watch
 ```
 
 ## Building for source
@@ -52,7 +32,7 @@ For production release:
 npm run build:prod
 ```
 
-## You Need To Know
+## Etc
 
 - We already have [Bootstrap v5.2](https://getbootstrap.com/) and [jQuery](https://jquery.com/) in this project, so you don't need to add it manually in html.
 - For images and fonts or other asset resources, put all assets in `/src/media` folder and it will be copied to `/dist/assets/media` folder. Also when you want to add a plugin into this project, you should put the plugin in `/src/plugins` folder, and it will be copied to `/dist/assets/plugins`.
