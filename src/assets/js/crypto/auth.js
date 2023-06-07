@@ -89,9 +89,6 @@ window.ethereum.on("accountsChanged", handleAccountChange);
 window.ethereum.on("networkChanged", handleNetworkChange);
 
 /// Auto connect if already connected
-if (
-  window.ethereum &&
-  (window.location.pathname == "/index.html" || window.location.pathname == "/")
-) {
+if (window.ethereum && window.location.pathname == "/index.html") {
   logIn().then();
 }
