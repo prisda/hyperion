@@ -1,59 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
+  <!--
 Website Name: The Rise Of Hyperion 
 Author: Hyperion
 License: UNLICENSED
 -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mint | The Rise Of Hyperion</title>
-  <link rel="shortcut icon" href="" />
-  <meta name="keywords" content="">
-  <meta name="description" content="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mint | The Rise Of Hyperion</title>
+    <link rel="shortcut icon" href="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
 
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
 
-  <!-- Start::Global Styles (used by all pages) -->
-  <link href="assets/css/styles.bundle.css" rel="stylesheet" type="text/css" />
-  <!-- End::Global Styles -->
+    <!-- Start::Global Styles (used by all pages) -->
+    <link
+      href="assets/css/styles.bundle.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- End::Global Styles -->
 
-  <!-- Start::Page Styles (used by this page) -->
-  <link href="assets/css/pages/nft-mint.css" rel="stylesheet" type="text/css" />
-  <!-- End::Page Styles -->
-</head>
+    <!-- Start::Page Styles (used by this page) -->
+    <link
+      href="assets/css/pages/nft-mint.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- End::Page Styles -->
+  </head>
 
-<body class="nft-mint-page">
-  <div class="container">
-    <div class="nft-mint-page__inner-wrap">
-      <div class="nft-details">
-        <h3 class="nft-details__header">MINT YOUR HYPERION</h3>
-        <div class="nft-details__image-wrapper">
-          <img src="assets/media/images/pre_reveal_hyperions.png" alt="Pre Reveal Hyperion">
-          <div class="nft-details-value">
-            <button type="button" class="btn nft-details-value__decrease">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.75 12H20.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </button>
-            <span data-value="0">0</span>
-            <button type="button" class="btn nft-details-value__increase">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3.75 12H20.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M12 3.75V20.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
+  <body class="nft-mint-page">
+    <div class="container">
+      <div class="nft-mint-page__inner-wrap">
+        <div class="nft-details">
+          <h3 class="nft-details__header">MINT YOUR HYPERION</h3>
+          <div class="nft-details__image-wrapper">
+            <img
+              src="assets/media/images/pre_reveal_hyperions.png"
+              alt="Pre Reveal Hyperion"
+            />
+            <div class="nft-details-value">
+              <button type="button" class="btn nft-details-value__decrease">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.75 12H20.25"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <span data-value="0" , id="mint-amount">0</span>
+              <button type="button" class="btn nft-details-value__increase">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.75 12H20.25"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 3.75V20.25"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="nft-details__cta">
+            <button type="button" class="btn btn-primary" , id="mint-btn">
+              MINT NOW
             </button>
           </div>
         </div>
-        <div class="nft-details__cta">
-          <button type="button" class="btn btn-primary">MINT NOW</button>
-        </div>
-      </div>
-      <!-- <div class="nft-details">
+        <!-- <div class="nft-details">
       <div class="mint-status">
         <svg class="mint-status__icon" width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.2071 0.5H131.5V131.5H0.5V17.2071L17.2071 0.5Z" stroke="#CE5555" />
@@ -68,7 +111,7 @@ License: UNLICENSED
         <button type="button" class="btn btn-primary">TRY AGAIN</button>
       </div>
     </div> -->
-      <!-- <div class="nft-details">
+        <!-- <div class="nft-details">
       <div class="mint-status">
         <svg class="mint-status__icon" width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M17.2071 0.5H131.5V131.5H0.5V17.2071L17.2071 0.5Z" stroke="#55CE94" />
@@ -82,42 +125,53 @@ License: UNLICENSED
         <a href="#" class="btn btn-primary">VIEW ON OPENSEA</a>
       </div>
     </div> -->
+      </div>
     </div>
-  </div>
 
-  <!-- Start::Global Bundle Scripts (used by all pages) -->
-  <script src="assets/js/scripts.bundle.js"></script>
-  <!-- End::Global Bundle Scripts -->
+    <!-- Start::Global Bundle Scripts (used by all pages) -->
+    <script src="assets/js/scripts.bundle.js"></script>
+    <!-- End::Global Bundle Scripts -->
 
-  <!-- Start::Custom Script (used by this page) -->
-  <script>
-    $(document).ready(function () {
-      $(document).on('click', '.nft-details-value .nft-details-value__increase', function () {
-        let span = $(this).closest('.nft-details-value').find('span[data-value]')
+    <!-- Start::Custom Script (used by this page) -->
+    <script>
+      $(document).ready(function () {
+        $(document).on(
+          "click",
+          ".nft-details-value .nft-details-value__increase",
+          function () {
+            let span = $(this)
+              .closest(".nft-details-value")
+              .find("span[data-value]");
 
-        if (!span.length) return
+            if (!span.length) return;
 
-        let value = parseInt(span.data('value')) || 0
-        value++
+            let value = parseInt(span.data("value")) || 0;
+            value++;
 
-        span.data('value', value)
-        span.text(value)
-      })
+            span.data("value", value);
+            span.text(value);
+          }
+        );
 
-      $(document).on('click', '.nft-details-value .nft-details-value__decrease', function () {
-        let span = $(this).closest('.nft-details-value').find('span[data-value]')
+        $(document).on(
+          "click",
+          ".nft-details-value .nft-details-value__decrease",
+          function () {
+            let span = $(this)
+              .closest(".nft-details-value")
+              .find("span[data-value]");
 
-        if (!span.length) return
+            if (!span.length) return;
 
-        let value = parseInt(span.data('value')) || 0
-        if (value > 0) value--
+            let value = parseInt(span.data("value")) || 0;
+            if (value > 0) value--;
 
-        span.data('value', value)
-        span.text(value)
-      })
-    })
-  </script>
-  <!-- End::Custom Script -->
-</body>
-
+            span.data("value", value);
+            span.text(value);
+          }
+        );
+      });
+    </script>
+    <!-- End::Custom Script -->
+  </body>
 </html>

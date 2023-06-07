@@ -1,32 +1,77 @@
 <!-- Start::Mint Popup -->
-<div class="modal mint-modal fade" id="mint-popup-example" tabindex="-1" aria-hidden="true">
+<div
+  class="modal mint-modal fade"
+  id="mint-popup-example"
+  tabindex="-1"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">MINT YOUR HYPERION</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
         <div class="nft-details">
           <div class="nft-details__image-wrapper">
-            <img src="assets/media/images/pre_reveal_hyperions.png" alt="Pre Reveal Hyperion">
+            <img
+              src="assets/media/images/pre_reveal_hyperions.png"
+              alt="Pre Reveal Hyperion"
+            />
             <div class="nft-details-value">
               <button type="button" class="btn nft-details-value__decrease">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.75 12H20.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.75 12H20.25"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </button>
-              <span data-value="0">0</span>
+              <span data-value="0" , id="mint-amount-modal">0</span>
               <button type="button" class="btn nft-details-value__increase">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3.75 12H20.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M12 3.75V20.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.75 12H20.25"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M12 3.75V20.25"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
               </button>
             </div>
           </div>
           <div class="nft-details__cta">
-            <button type="button" class="btn btn-primary">MINT NOW</button>
+            <button type="button" class="btn btn-primary" , id="mint-btn-modal">
+              MINT NOW
+            </button>
           </div>
         </div>
         <!-- <div class="nft-details">
