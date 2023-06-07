@@ -1,5 +1,4 @@
 import { ethers } from "ethers";
-import "merkletreejs";
 
 const whitelist = {
   "0xc17c646D6300bBff077115e10B1B7FDBe518929B": 10,
@@ -28,7 +27,7 @@ const makeMerkleTree = () => {
   });
 
   // Create the Merkle tree
-  const tree = new MerkleTree(hashes, ethers.keccak256, {
+  const tree = new window.MerkleTree(hashes, ethers.keccak256, {
     sortPairs: true,
   });
   // Get the Merkle root
