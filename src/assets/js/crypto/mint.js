@@ -35,11 +35,11 @@ export const minter = async (isWhitelist = false) => {
     if (amount === 0) reason.push("- You are trying to mint 0 tokens");
     if (totalSupply + BigInt(amount) > maxSupply)
       reason.push(
-        `- Minting x ${amount} will exceed the max supply (${totalSupply}/${maxSupply})`
+        `- Minting x${amount} will exceed the max supply (${totalSupply}/${maxSupply})`
       );
     if (balance < price * BigInt(amount))
       reason.push(
-        `- You do not have enough ETH to mint x ${amount}\n\tPrice: ${ethers.formatEther(
+        `- You do not have enough ETH to mint x${amount}\n\tPrice: ${ethers.formatEther(
           price
         )}\n\tBalance: ${ethers.formatEther(balance)}`
       );
@@ -51,7 +51,7 @@ export const minter = async (isWhitelist = false) => {
       const usedMints = await contract.whitelistMints(user);
       if (usedMints + BigInt(amount) > BigInt(allocated(user)))
         reason.push(
-          `- Minting x ${amount} will exceed your whitelist claims (${usedMints}/${allocated(
+          `- Minting x${amount} will exceed your whitelist claims (${usedMints}/${allocated(
             user
           )})`
         );
@@ -108,58 +108,6 @@ const nftRead = async (contract) => {
     isWhitelistOpen: await contract.isWhitelistOpen(),
   };
 };
-
-// export const mintPublic = async () => {
-//   const { contract, provider } = await getContract();
-//   const user = await authenticate();
-//   const amount = getAmount();
-//   const reason = ["Your tranaction is expected to fail because:\n"];
-
-//   setMintText("GENERATING TXN...");
-//   const { price, maxSupply, totalSupply, isMinting, isWhitelistOpen } =
-//     await nftRead(contract);
-//   if (!user) {
-//     reason.push("- Your wallet is not connected");
-//   } else {
-//     const balance = await provider.getBalance(user);
-//     if (amount === 0) reason.push("- You are trying to mint 0 tokens");
-//     if (!isMinting) reason.push("- Public minting is not active");
-//     if (balance < price * BigInt(amount))
-//       reason.push(
-//         `- You do not have enough ETH to mint x ${amount}\n\tPrice: ${ethers.formatEther(
-//           price
-//         )}\n\tBalance: ${ethers.formatEther(balance)}`
-//       );
-//     if (totalSupply + BigInt(amount) > maxSupply)
-//       reason.push(
-//         `- Minting x ${amount} will exceed the max supply (${totalSupply}/${maxSupply})`
-//       );
-//   }
-
-//   if (reason.length > 1) {
-//     setTimeout(function () {
-//       setMintText("EXPECTED TO FAIL");
-//     }, 1);
-//     setTimeout(function () {
-//       alert(reason.join("\n"));
-//       window.location.href = "index.html";
-//     }, 2);
-//     return;
-//   }
-
-//   try {
-//     setMintText("CHECK WALLET");
-//     const txn = await contract.mintTokensPublic(amount, {
-//       value: (await contract.priceWeiPublic()) * BigInt(amount),
-//     });
-//     setMintText("PENDING...");
-//     await txn.wait();
-//     setMintText("SUCCESS");
-//   } catch (error) {
-//     console.log("Failed to transact", error);
-//   }
-//   setMintText("MINT NOW");
-// };
 
 const getContract = async () => {
   if (!window.ethereum) return { contract: null, provider: null };
