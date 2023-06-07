@@ -1,5 +1,5 @@
 import { getProofFor, whitelistCheck, allocated } from "./whitelist.js";
-import { NFT_CONTRACT, ABI } from "./config.js";
+import { NFT_CONTRACT, ABI, CHAIN_ID } from "./config.js";
 import { ethers } from "ethers";
 import { authenticate } from "./auth.js";
 import { setMintText } from "./html.js";
@@ -17,44 +17,54 @@ export const minter = async (isWhitelist = false) => {
   const amount = getAmount();
   const reason = ["Your tranaction is expected to fail because:\n"];
 
-  setMintText("GENERATING TXN...");
-  const {
-    pricePublic,
-    priceWhitelist,
-    maxSupply,
-    totalSupply,
-    isMinting,
-    isWhitelistOpen,
-  } = await nftRead(contract);
-  const price = isWhitelist ? priceWhitelist : pricePublic;
-
-  if (!user) {
-    reason.push("- Your wallet is not connected");
+  if (
+    CHAIN_ID !=
+    (await window.ethereum.request({
+      method: "eth_chainId",
+    }))
+  ) {
+    reason.push(`- Your wallet is connected to the wrong network`);
   } else {
-    const balance = await provider.getBalance(user);
-    if (amount === 0) reason.push("- You are trying to mint 0 tokens");
-    if (totalSupply + BigInt(amount) > maxSupply)
-      reason.push(
-        `- Minting x${amount} will exceed the max supply (${totalSupply}/${maxSupply})`
-      );
-    if (balance < price * BigInt(amount))
-      reason.push(
-        `- You do not have enough ETH to mint x${amount}\n\tPrice: ${ethers.formatEther(
-          price
-        )}\n\tBalance: ${ethers.formatEther(balance)}`
-      );
-    if (!isWhitelist) {
-      if (!isMinting) reason.push("- Public minting is not active");
+    setMintText("GENERATING TXN...");
+    const {
+      pricePublic,
+      priceWhitelist,
+      maxSupply,
+      totalSupply,
+      isMinting,
+      isWhitelistOpen,
+    } = await nftRead(contract);
+    const price = isWhitelist ? priceWhitelist : pricePublic;
+
+    if (!user) {
+      reason.push("- Your wallet is not connected");
     } else {
-      if (!isWhitelistOpen) reason.push("- Whitelist minting is not active");
-      if (!whitelistCheck(user)) reason.push("- You are not on the whitelist");
-      const usedMints = await contract.whitelistMints(user);
-      if (usedMints + BigInt(amount) > BigInt(allocated(user)))
+      const balance = await provider.getBalance(user);
+      if (amount === 0) reason.push("- You are trying to mint 0 tokens");
+      if (totalSupply + BigInt(amount) > maxSupply)
         reason.push(
-          `- Minting x${amount} will exceed your whitelist claims (${usedMints}/${allocated(
-            user
-          )})`
+          `- Minting x${amount} will exceed the max supply (${totalSupply}/${maxSupply})`
         );
+      if (balance < price * BigInt(amount))
+        reason.push(
+          `- You do not have enough ETH to mint x${amount}\n\tPrice: ${ethers.formatEther(
+            price
+          )}\n\tBalance: ${ethers.formatEther(balance)}`
+        );
+      if (!isWhitelist) {
+        if (!isMinting) reason.push("- Public minting is not active");
+      } else {
+        if (!isWhitelistOpen) reason.push("- Whitelist minting is not active");
+        if (!whitelistCheck(user))
+          reason.push("- You are not on the whitelist");
+        const usedMints = await contract.whitelistMints(user);
+        if (usedMints + BigInt(amount) > BigInt(allocated(user)))
+          reason.push(
+            `- Minting x${amount} will exceed your whitelist claims (${usedMints}/${allocated(
+              user
+            )})`
+          );
+      }
     }
   }
 
