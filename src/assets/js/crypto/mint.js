@@ -1,9 +1,10 @@
 import { getProofFor, whitelistCheck, allocated } from "./whitelist.js";
-import { NFT_CONTRACT, ABI, CHAIN_ID } from "./config.js";
+import { ABI, CHAIN_ID, NFT_ADDRS } from "./config.js";
 import { ethers } from "ethers";
 import { authenticate } from "./auth.js";
 import { setMintText } from "./html.js";
 
+/// Gets amount of nfts to mint from btns
 const getAmount = () => {
   const a1 = document.getElementById("mint-amount");
   const a2 = document.getElementById("mint-amount-modal");
@@ -11,12 +12,13 @@ const getAmount = () => {
   else if (a2) return parseInt(a2.innerText);
 };
 
-export const minter = async (isWhitelist = false) => {
-  const { contract, provider } = await getContract();
+/// Minting function for both public & whitelist (I, II & III)
+export const minter = async (isWhitelist = false, contractNum = 1) => {
+  const { contract, provider } = await getContract(contractNum);
   const user = await authenticate();
   const amount = getAmount();
   const reason = ["Your tranaction is expected to fail because:\n"];
-
+  /// Wrong chain
   if (
     CHAIN_ID !=
     (await window.ethereum.request({
@@ -35,7 +37,6 @@ export const minter = async (isWhitelist = false) => {
       isWhitelistOpen,
     } = await nftRead(contract);
     const price = isWhitelist ? priceWhitelist : pricePublic;
-
     if (!user) {
       reason.push("- Your wallet is not connected");
     } else {
@@ -55,19 +56,18 @@ export const minter = async (isWhitelist = false) => {
         if (!isMinting) reason.push("- Public minting is not active");
       } else {
         if (!isWhitelistOpen) reason.push("- Whitelist minting is not active");
-        if (!whitelistCheck(user))
-          reason.push("- You are not on the whitelist");
+        if (!whitelistCheck(user, contractNum))
+          reason.push("- You are not on this whitelist");
         const usedMints = await contract.whitelistMints(user);
-        if (usedMints + BigInt(amount) > BigInt(allocated(user)))
+        const alloc = allocated(user, contractNum);
+        if (usedMints + BigInt(amount) > BigInt(alloc))
           reason.push(
-            `- Minting x${amount} will exceed your whitelist claims (${usedMints}/${allocated(
-              user
-            )})`
+            `- Minting x${amount} will exceed your whitelist claims (${usedMints}/${alloc})`
           );
       }
     }
   }
-
+  /// Any reason txn might fail
   if (reason.length > 1) {
     setTimeout(function () {
       setMintText("EXPECTED TO FAIL");
@@ -78,6 +78,7 @@ export const minter = async (isWhitelist = false) => {
     }, 2);
     return;
   }
+  /// Create txn
   var txn;
   try {
     setMintText("CHECK WALLET");
@@ -87,10 +88,15 @@ export const minter = async (isWhitelist = false) => {
       });
       setMintText("PENDING...");
     } else {
-      const proof = getProofFor(user);
-      txn = await contract.mintTokensWhitelist(proof, allocated(user), amount, {
-        value: (await contract.priceWeiWhitelist()) * BigInt(amount),
-      });
+      const proof = getProofFor(user, contractNum);
+      txn = await contract.mintTokensWhitelist(
+        proof,
+        allocated(user, contractNum),
+        amount,
+        {
+          value: (await contract.priceWeiWhitelist()) * BigInt(amount),
+        }
+      );
       setMintText("PENDING...");
     }
     try {
@@ -108,6 +114,7 @@ export const minter = async (isWhitelist = false) => {
   setMintText("MINT NOW");
 };
 
+/// Reads nft details from contract
 const nftRead = async (contract) => {
   return {
     pricePublic: await contract.priceWeiPublic(),
@@ -119,10 +126,11 @@ const nftRead = async (contract) => {
   };
 };
 
-const getContract = async () => {
+/// Gets ethers (WhiteNovember) contract & provider
+const getContract = async (contractNum) => {
   if (!window.ethereum) return { contract: null, provider: null };
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = await provider.getSigner();
-  const contract = new ethers.Contract(NFT_CONTRACT, ABI, signer);
+  const contract = new ethers.Contract(NFT_ADDRS[contractNum], ABI, signer);
   return { contract, provider };
 };

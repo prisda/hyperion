@@ -5,15 +5,13 @@ This directory contains code to connect the client's site to the zkSync network 
 ## Directory Structure
 
 - `crypto/`
-
-  - `assets/`
-    - `abi.json`
-    - `whitelist.json`
+  - `abi.json`: WhiteNovember.sol ABI
   - `auth.js`: Handles user login/logout
-  - `config.js`: Specifies chainId, network details and contract address/abi,
+  - `config.js`: Specifies chainId, network details, contract abi & addresses,
   - `html.js`: Handles connecting logic to html elements
+  - `mint.js`: Handles minting logic
   - `whitelist.js`: Handles whitelist logic
 
 ## Author
 
-- Matt Carter (https://Novemberfork.io)
+- Powered By Novemberfork (https://Novemberfork.io)
