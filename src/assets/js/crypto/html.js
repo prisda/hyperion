@@ -3,7 +3,13 @@ import { minter } from "./mint";
 
 /// Login buttons
 export const btn1 = document.getElementById("connect-btn"),
-  btn2 = document.getElementById("connect-btn-mobile");
+  btn2 = document.getElementById("connect-btn-mobile"); /// connect btn and mobile mobile btn
+export const disconnectBtn = document.getElementById("disconnect-btn");
+export const ethBalBtn = document.getElementById("eth-bal-btn");
+export const usdtBalBtn = document.getElementById("usdt-bal-btn");
+/// Drop down (desktop)
+export const dropDown = document.getElementById("bal-dropdown");
+export const dropdownWrapper = document.getElementById("dropdown-wrapper");
 
 /// Mint buttons (page)
 export const mintBtnPage1 = document.getElementById("mint-btn");
@@ -16,7 +22,21 @@ export const mintBtnModal1 = document.getElementById("mint-btn-modal");
 /// Add login/out & mint functions
 export const initHTML = () => {
   /// Login buttons
-  if (btn1) btn1.addEventListener("click", () => logUser());
+  if (dropDown) dropDown.style.display = "none";
+  if (dropdownWrapper) {
+    dropdownWrapper.addEventListener("mouseover", () => {
+      dropDown.style.display = "block";
+    });
+
+    dropdownWrapper.addEventListener("mouseout", () => {
+      console.log("out");
+      dropDown.style.display = "none";
+    });
+    dropdownWrapper.addEventListener("click", () => {
+      logUser();
+    });
+  }
+  /// mobile button
   if (btn2) btn2.addEventListener("click", () => logUser());
   /// Mint buttons
   if (mintBtnPage1)
@@ -28,6 +48,21 @@ export const initHTML = () => {
     mintBtnPage2.addEventListener("click", () => minter(false, 2));
   if (mintBtnPage3)
     mintBtnPage3.addEventListener("click", () => minter(false, 3));
+};
+
+export const setDropDownText = (ethBal, usdtBal, disconnectBtn) => {
+  if (ethBalBtn) ethBalBtn.innerText = ethBal;
+  if (usdtBalBtn) usdtBalBtn.innerText = usdtBal;
+  if (disconnectBtn) disconnectBtn.innerText = disconnectBtn;
+};
+
+export const disableDropDown = () => {
+  if (dropDown) {
+    dropDown.style.display = "none";
+    ethBalBtn.innerText = "...";
+    usdtBalBtn.innerText = "...";
+    disconnectBtn.innerText = "...";
+  }
 };
 
 /// Change text of login & mint buttons
