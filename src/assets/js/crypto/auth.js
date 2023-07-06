@@ -1,5 +1,6 @@
-import { CHAIN_ID, networks } from "./config.js";
-import { setWalletText } from "./html.js";
+import { CHAIN_ID, networks, ERC20ABI, USDT_ADDR } from "./config.js";
+import { setWalletText, setDropDownText } from "./html.js";
+import { ethers } from "ethers";
 
 var loggedIn = false;
 
@@ -12,22 +13,51 @@ export const logUser = async () => {
   loggedIn ? logOut() : await logIn();
 };
 
+const fetchBalances = async () => {
+  let ethBalance = 0,
+    usdtBalance = 0;
+
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const signer = await provider.getSigner();
+  const usdtContract = new ethers.Contract(USDT_ADDR, ERC20ABI, signer);
+  try {
+    ethBalance = await provider.getBalance(signer.getAddress());
+  } catch (error) {
+    console.log("Error fetching ETH balance", error);
+  }
+
+  try {
+    await usdtContract.balanceOf(signer.getAddress());
+  } catch (error) {
+    console.log("Error fetching USDT balance", error);
+  }
+
+  return {
+    ethBalance: parseFloat(ethers.formatEther(ethBalance)).toFixed(3),
+    usdtBalance: parseFloat(ethers.formatUnits(usdtBalance, 6)).toFixed(3),
+  };
+};
+
 const logIn = async () => {
   const user = await authenticate();
 
   if (user) {
     /// change text
     setWalletText(compress(user));
+    /// fetch balances
+    const { ethBalance, usdtBalance } = await fetchBalances();
+    setDropDownText(ethBalance + " ETH", usdtBalance + " USDT", "DISCONNECT");
     loggedIn = true;
   } else {
     /// change text
-    console.log("fail");
     loggedIn = false;
   }
 };
 
 const logOut = () => {
   setWalletText("CONNECT WALLET");
+  setDropDownText("... ETH", "... USDT", "CONNECT");
+
   loggedIn = false;
 };
 

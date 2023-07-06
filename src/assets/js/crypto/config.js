@@ -26,6 +26,8 @@ export const networks = {
 };
 /// NFT CONFIG
 export const ABI = require("./abi.json");
+export const ERC20ABI = require("./erc20abi.json");
+export const USDT_ADDR = "0xD5150c9e61ADbcA91A0F6908d5f7A5440E7E96E5";
 export const NFT_ADDRS = {
   1: "0x0D31a408Db010CF096578B9cE5562B878B344517",
   2: "0x4C009dcD3FF277FAD070D617B48748F43bf19ff5",
