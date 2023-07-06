@@ -26,7 +26,6 @@ export const initHTML = () => {
       dropDown.style.display = "block";
     });
     dropdownWrapper.addEventListener("mouseout", () => {
-      console.log("out");
       dropDown.style.display = "none";
     });
     dropdownWrapper.addEventListener("click", () => {
