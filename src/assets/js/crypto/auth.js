@@ -17,19 +17,21 @@ const fetchBalances = async () => {
   let ethBalance = 0,
     usdtBalance = 0;
 
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
-  const usdtContract = new ethers.Contract(USDT_ADDR, ERC20ABI, signer);
-  try {
-    ethBalance = await provider.getBalance(signer.getAddress());
-  } catch (error) {
-    console.log("Error fetching ETH balance", error);
-  }
+  if (window.ethereum) {
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    const signer = await provider.getSigner();
+    const usdtContract = new ethers.Contract(USDT_ADDR, ERC20ABI, signer);
+    try {
+      ethBalance = await provider.getBalance(signer.getAddress());
+    } catch (error) {
+      console.log("Error fetching ETH balance", error);
+    }
 
-  try {
-    await usdtContract.balanceOf(signer.getAddress());
-  } catch (error) {
-    console.log("Error fetching USDT balance", error);
+    try {
+      await usdtContract.balanceOf(signer.getAddress());
+    } catch (error) {
+      console.log("Error fetching USDT balance", error);
+    }
   }
 
   return {
@@ -114,9 +116,10 @@ const handleNetworkChange = async (networkId) => {
     (await addNetwork()) && (await switchNetwork()) ? await logIn() : logOut();
   }
 };
-
-window.ethereum.on("accountsChanged", handleAccountChange);
-window.ethereum.on("networkChanged", handleNetworkChange);
+if (window.ethereum) {
+  window.ethereum.on("accountsChanged", handleAccountChange);
+  window.ethereum.on("networkChanged", handleNetworkChange);
+}
 
 /// Auto connect if already connected
 if (window.ethereum && window.location.pathname == "/index.html") {
